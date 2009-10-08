@@ -139,15 +139,6 @@ class SH_Framework {
         $this->options = new SH_ArrayWrapper($options);
         $this->request = new SH_RequestWrapper();
         
-        // Enable the error handler
-        //set_error_handler(array($this, 'handleError'), 2);
-        
-    }
-    
-    // Handle an error
-    public function handleError($number, $message, $file, $line) {
-        header("HTTP/1.0 500 Server Error");
-        throw new Exception('500 Server Error');
     }
     
     // Show a 404 exeception
