@@ -1,0 +1,63 @@
+<?php
+
+// Includes
+require_once(dirname(__FILE__) . '/../../includes/shp_framework.php');
+
+// Create a new application class
+class Application extends SH_Framework {
+    
+    // Basic get request
+    public function get_index() {
+        include(dirname(__FILE__) . '/templates/index.html');
+    }
+    
+    // Run the php info
+    public function get_info() {
+        phpinfo();
+    }
+    
+    // Return json info
+    public function get_json() {
+        SH_Http::sendJson(
+            array(
+                'name'  => 'Pieter Claerhout',
+                'email' => 'pieter@shpartners.com',
+                'url'   => 'http://www.shpartners.com',
+            )
+        );
+    }
+    
+    // Return xml info
+    public function get_xml() {
+        SH_Http::sendXml(
+            "<results><record><name>Pieter Claerhout</name><email>pieter@shpartners.com</email></record></results>"
+        );
+    }
+    
+    // Perform a redirect
+    public function get_redirect() {
+        $this->redirect('/');
+    }
+    
+    // Add a custom header
+    public function add_header() {
+        echo '<h1>My custom header</h1>';
+    }
+    
+}
+
+// Create the instance
+$app = new Application();
+
+// Run a before filter
+$app->before('get_info', 'add_header');
+
+// Link up the urls
+$app->get('/',          'get_index');
+$app->get('/info/',     'get_info');
+$app->get('/json/',     'get_json');
+$app->get('/xml/',      'get_xml');
+$app->get('/redirect/', 'get_redirect');
+
+// Run the application
+$app->run();

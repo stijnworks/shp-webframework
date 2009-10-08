@@ -1,0 +1,213 @@
+/*
+
+Created by SHpartners
+Based on template version 1.0 (07-11-2007)
+
+Version history (to be removed)
+2007-11-07 Initial version
+
+Customer:    Vormelek
+Domain:      www.vormelek.be
+Author:      Pieter Claerhout
+             Mieke Raman
+Last update: 07-11-2007
+Media:       screen
+
+ToC
+
+	1. defaults
+	2. structure
+	3. links and navigation
+	4. fonts
+	5. images
+	6. hacks
+
+*/
+
+/* 1. Defaults */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol, li {
+    margin-left: 12px;
+}
+
+body {
+    background-color : #FFFFFF;
+    font-family: Arial, Verdana, "Times New Roman", sans-serif;
+    font-size: 62,5%; /* 1em = 10px */
+    color : #000000;
+}
+
+a img {
+    border : none;
+}
+
+a {
+    outline: none;
+}
+
+h1 {
+    font-size: 2.2em; /* 22px */
+}
+
+h2 {
+    font-size: 2.0em; /* 20px */
+}
+
+h3 {
+    font-size: 1.8em; /* 18px */
+}
+
+h4 {
+    font-size: 1.6em; /* 16px */
+}
+
+h5 {
+    font-size: 1.4em; /* 14px */
+}
+
+p {
+    font-size: 1.0em; /* 10px */
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+q:before, q:after {
+    content: '';
+}
+
+abbr, acronym {
+    border: 0;
+}
+.print_only {
+    display: none;
+}
+
+/* 2. Structure */
+#wrapper {
+}
+
+/* 3. Links and Navigation */
+a:link{
+}
+
+a:visited{
+}
+
+a:hover{
+}
+
+a:active{
+}
+
+.nav * {
+    list-style: none;
+}
+
+.nav .nav_level_1 a {
+}
+
+.nav .nav_level_2 a {
+}
+
+p, ul {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+* {
+    font-family: Verdana, sans-serif;
+    line-height: 140%;
+}
+#wrapper {
+    width: 640px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 30px;
+}
+#footer {
+    text-align: center;
+    font-size: 0.7em;
+    color: #666;
+}
+#footer a {
+    color: #333;
+    padding-bottom: 30px;
+}
+body {
+    background-color: #DDD;
+}
+a {
+    text-decoration: none;
+    color: blue;
+}
+h1 {
+    font-size: 1.6em;
+    font-weight: normal;
+}
+h2 {
+    font-size: 1.2em;
+    margin-top: 18px;
+    font-weight: normal;
+    color: #777;
+}
+h3 {
+    font-size: 1.2em;
+    margin-top: 18px;
+    font-weight: normal;
+    color: #777;
+}
+h4 {
+    font-size: 1em;
+    margin-top: 18px;
+    font-weight: normal;
+    color: #777;
+}
+p, li, td, th, legend, label {
+    font-size: 0.8em;
+}
+table {
+    width: 100%;
+}
+tr {
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+td {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+td.right {
+    width: 60px;
+    text-align: right;
+}
+pre, #iframe {
+    border: 1px dotted #333;
+    background-color: #EEE;
+    padding: 4px;
+    font-family: Monaco, "Courier New", Courier, monospaced;
+    font-size: 0.7em;
+}
+p, pre, table {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+fieldset {
+    border: 1px dotted #333;
+    background-color: #EEE;
+    padding: 0 20px;
+    padding-bottom: 8px;
+}
+legend {
+    padding: 4px;   
+}
+label {
+    display: block;
+    float: left;
+    width: 120px;
+}
