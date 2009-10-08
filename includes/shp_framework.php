@@ -135,11 +135,8 @@ class SH_Framework {
     
     // Constructor
     public function __construct($options=array()) {
-        
-        // Initialize the variables
         $this->options = new SH_ArrayWrapper($options);
         $this->request = new SH_RequestWrapper();
-        
     }
     
     // Show a 404 exeception
@@ -163,12 +160,11 @@ class SH_Framework {
         if (!is_array($methodName)) {
             $methodName = explode('|', $methodName);
         }
-        for ($i = 0; $i < count($methodName); $i++) {
-            $method = $methodName[$i];
+        foreach ($methodName as $method) {
             if (!isset($this->filters[$method])) {
-                $this->filters[$method] = array();
+               $this->filters[$method] = array();
             }
-            array_push($this->filters[$method], $filterName);
+            $this->filters[$method][] = $filterName;
         }
     }
     
