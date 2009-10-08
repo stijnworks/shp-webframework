@@ -9,6 +9,7 @@
  *  @version 1.0
  */
 
+// HTTP abstraction layer
 class SH_Http {
     
     // Perform a http redirect
