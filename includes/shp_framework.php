@@ -184,13 +184,18 @@ class SH_Framework {
         echo $this->processRequest();
     }
     
+    // Get the base url
+    public function baseUrl() {
+        return dirname($_SERVER['PHP_SELF']) . '/';
+    }
+    
     // Perform a redirect
     protected function redirect($path) {
         
         // Construct the url parts
         $protocol = $_SERVER['HTTPS'] ? 'https' : 'http';
         $host = (preg_match('%^http://|https://%', $path) > 0) ? '' : "$protocol://" . $_SERVER['HTTP_HOST'];
-        $uri  = dirname($_SERVER['PHP_SELF']);
+        $uri  = rtrim($this->baseUrl(), '/');
         
         // Perform the redirect
         SH_Http::redirect("$host$uri$path");

@@ -8,7 +8,7 @@ class Application extends SH_Framework {
     
     // Basic get request
     public function get_index() {
-        include(dirname(__FILE__) . '/templates/index.html');
+        $this->template('index');
     }
     
     // Run the php info
@@ -39,9 +39,20 @@ class Application extends SH_Framework {
         $this->redirect('/');
     }
     
+    // Get a page
+    public function get_page($page) {
+        $this->page = $page;
+        $this->template('page');
+    }
+    
     // Add a custom header
     public function add_header() {
         echo '<h1>My custom header</h1>';
+    }
+    
+    // Output a template
+    protected function template($template) {
+        include(dirname(__FILE__) . "/templates/{$template}.html");
     }
     
 }
@@ -53,11 +64,12 @@ $app = new Application();
 $app->before('get_info', 'add_header');
 
 // Link up the urls
-$app->get('/',          'get_index');
-$app->get('/info/',     'get_info');
-$app->get('/json/',     'get_json');
-$app->get('/xml/',      'get_xml');
-$app->get('/redirect/', 'get_redirect');
+$app->get('/',            'get_index');
+$app->get('/info/',       'get_info');
+$app->get('/json/',       'get_json');
+$app->get('/xml/',        'get_xml');
+$app->get('/redirect/',   'get_redirect');
+$app->get('/page/:page/', 'get_page');
 
 // Run the application
 $app->run();

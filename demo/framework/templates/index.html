@@ -4,7 +4,9 @@
     
     <title>SHpartners Web Framework</title>
     
-    <link rel="stylesheet" href="css/screen.css" media="screen" type="text/css" />
+    <base href="<?= $this->baseUrl() ?>"/>
+    
+    <link rel="stylesheet" href="../css/screen.css" media="screen" type="text/css" />
     
 </head>
 
@@ -21,6 +23,12 @@
             <li><a href="json/">Show JSON data</a></li>
             <li><a href="xml/">Show an XML file</a></li>
             <li><a href="redirect/">Perform a redirect</a></li>
+            <li>
+                Display a parameter:
+                <a href="page/about/">about</a> |
+                <a href="page/products/">products</a> |
+                <a href="page/home/">home</a>
+            </li>
         </ul>
         
     </div>
