@@ -35,3 +35,11 @@ SHpartners Web Framework - TODO
 * Add support for multiple applications?
 
     This probably means rewriting part of the url router.
+    
+* Rewrite the url routing to match the one from the YII framework
+
+    `array(
+        'posts'=>'post/list',
+        'post/<id:\d+>'=>'post/read',
+        'post/<year:\d{4}>/<title>'=>'post/read',
+    )`
