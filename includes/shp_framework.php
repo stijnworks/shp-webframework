@@ -28,6 +28,7 @@ class SH_Url {
         
         // Get the request information
         $requestMethod = $_SERVER['REQUEST_METHOD'];
+        $requestMethod = isset($_REQUEST['method']) ? $_REQUEST['method'] : $requestMethod;
         $requestUri    = isset($_GET['__url__']) ? $_GET['__url__'] : '/';
         
         // Populate the class variables
