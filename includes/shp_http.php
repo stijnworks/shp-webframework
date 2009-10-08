@@ -12,7 +12,8 @@
 class SH_Http {
     
     // Perform a http redirect
-    public static function redirect($url) {
+    public static function redirect($url, $code=302) {
+        header("HTTP/1.0 {$code} Found");
         header("Location: ${url}");
         die();
     }
