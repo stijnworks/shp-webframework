@@ -30,6 +30,7 @@ class SH_Url {
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         $requestMethod = isset($_REQUEST['method']) ? $_REQUEST['method'] : $requestMethod;
         $requestUri    = isset($_GET['__url__']) ? $_GET['__url__'] : '/';
+        $requestUri    = rtrim($requestUri, '/') . '/';
         
         // Populate the class variables
         $this->url        = $url;
