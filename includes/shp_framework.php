@@ -24,11 +24,15 @@ class SH_Url {
     public $match    = false;
     
     // Constructor
-    public function __construct($httpMethod, $url, $conditions=array(), $mountPoint) {
+    public function __construct($httpMethod, $url, $conditions=array()) {
         
-        // Get the request information
+        // Get the request method
         $requestMethod = $_SERVER['REQUEST_METHOD'];
-        $requestMethod = isset($_REQUEST['method']) ? $_REQUEST['method'] : $requestMethod;
+        $requestMethod = isset($_REQUEST['__method__']) ? $_REQUEST['__method__'] : $requestMethod;
+        $requestMethod = trim(strtoupper($requestMethod));
+        $_SERVER['REQUEST_METHOD'] = $requestMethod;
+        
+        // Get the request URI
         $requestUri    = isset($_GET['__url__']) ? $_GET['__url__'] : '/';
         $requestUri    = rtrim($requestUri, '/') . '/';
         
@@ -38,7 +42,7 @@ class SH_Url {
         $this->conditions = $conditions;
         
         // Check if the HTTP method matches
-        if (strtoupper($httpMethod) == $requestMethod) {
+        if ($httpMethod == '*' || strtoupper($httpMethod) == $requestMethod) {
             
             // Initialize the variables
             $paramNames  = array();
@@ -155,6 +159,21 @@ class SH_Framework {
        $this->event('post', $url, $methodName, $conditions);
     }
     
+    // Put callback
+    public function put($url, $methodName, $conditions=array()) {
+       $this->event('put', $url, $methodName, $conditions);
+    }
+    
+    // Post callback
+    public function delete($url, $methodName, $conditions=array()) {
+       $this->event('delete', $url, $methodName, $conditions);
+    }
+    
+    // Any callback
+    public function any($url, $methodName, $conditions=array()) {
+       $this->event('*', $url, $methodName, $conditions);
+    }
+    
     // Apply a before filter
     public function before($methodName, $filterName) {
         if (!is_array($methodName)) {
@@ -225,10 +244,8 @@ class SH_Framework {
     
     // Process the request
     private function processRequest() {
-        for ($i = 0; $i < count($this->mappings); $i++) {
-            $mapping = $this->mappings[$i];
-            $mountPoint = is_string($this->options->mountPoint) ? $this->options->mountPoint : '';
-            $url        = new SH_Url($mapping[0], $mapping[1], $mapping[3], $mountPoint);
+        foreach ($this->mappings as $mapping) {
+            $url = new SH_Url($mapping[0], $mapping[1], $mapping[3]);
             if ($url->match === true) {
                 return $this->execute($mapping[2], $url->params);
             }

@@ -45,6 +45,11 @@ class Application extends SH_Framework {
         $this->template('page');
     }
     
+    // Any request handler
+    public function any_handler() {
+        $this->template('any');
+    }
+    
     // Add a custom header
     public function add_header() {
         echo '<h1>My custom header</h1>';
@@ -70,6 +75,7 @@ $app->get('/json/',       'get_json');
 $app->get('/xml/',        'get_xml');
 $app->get('/redirect/',   'get_redirect');
 $app->get('/page/:page/', 'get_page');
+$app->any('/any/',        'any_handler');
 
 // Run the application
 $app->run();
