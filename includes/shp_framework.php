@@ -49,13 +49,18 @@ class SH_Url {
             $paramValues = array();
             
             // Get the parameter names
-            preg_match_all('@:([a-zA-Z]+)@', $url, $paramNames, PREG_PATTERN_ORDER);
+            preg_match_all('/<(\w+):?(.*?)?>/', $url, $paramMatches);
             
             // We only need the matches
-            $paramNames = $paramNames[1];
+            $paramNames = $paramMatches[1];
             
-            // Replace the parameters with the regex capture
-            $regexedUrl = preg_replace_callback('@:[a-zA-Z_]+@', array($this, 'regexValue'), $url);
+            // Replace the parameters
+            $regexedUrl = $url;
+            for ($i=0; $i < count($paramNames); $i++) {
+                $match = $paramMatches[2][$i];
+                $match = empty($match) ? '([a-zA-Z0-9_]+)' : '(' . $match. ')';
+                $regexedUrl = str_replace($paramMatches[0][$i], $match, $regexedUrl);
+            }
             
             // Determine match and get param values
             if (preg_match('@^' . $regexedUrl . '$@', $requestUri, $paramValues)) {
@@ -75,16 +80,6 @@ class SH_Url {
             
         }
         
-    }
-    
-    // Callback function to replace a match string with a regexp capture
-    private function regexValue($matches) {
-        $key = str_replace(':', '', $matches[0]);
-        if (isset($this->conditions[$key])) {
-            return '(' . $this->conditions[$key] . ')';
-        } else {
-            return '([a-zA-Z0-9_]+)';
-        }
     }
     
 }
