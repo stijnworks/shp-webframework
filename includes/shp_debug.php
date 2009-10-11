@@ -1,5 +1,14 @@
 <?php
 
+/**
+ *  SHpartners Web Framework
+ *
+ *  (c) Copyright 2009 by SHpartners, http://www.shpartners.com
+ *
+ *  @author Pieter Claerhout <pieter@shpartners.com>
+ *  @version 1.0
+ */
+
 // Debug helpers
 class SH_Debug {
     
