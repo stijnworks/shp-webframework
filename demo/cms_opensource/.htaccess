@@ -1,4 +1,0 @@
-# Enable url rewriting
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ "index.php?__url__=/$1" [L,QSA]
