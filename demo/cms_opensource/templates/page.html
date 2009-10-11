@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    
+    <title><?= $this->page->get('title') ?> &raquo; YellowDuck.Be Open Source</title>
+    
+    <base href="<?= $this->baseUrl() ?>"/>
+    
+    <link rel="stylesheet" href="../css/screen.css" media="screen" type="text/css" />
+    
+</head>
+
+<body>
+    
+    <div id="wrapper">
+        
+        <h1>YellowDuck.Be Open Source</h1>
+        
+        <? if ($this->page->getUrl() != "") { ?>
+            
+            <h2><?= $this->page->get('title') ?></h2>
+            
+            <p>
+                You are here:
+                <? foreach ($this->page->getParents() as $parent) { ?>
+                    <?= SH_Html::link($parent->get('title'), $parent->getUrl()) ?>
+                    &raquo;
+                <? } ?>
+                <b><?= $this->page->get('title') ?></b>
+            <p>
+            
+        <? } ?>
+        
+        <?= SH_Html::markdown($this->page->get('body')) ?>
+        
+        <h2>Categories</h2>
+        
+        <ul>
+            <? foreach ($this->page->getChildren() as $child) { ?>
+                <li><?= SH_Html::link($child->get('title'), $child->getUrl()) ?></li>
+            <? } ?>
+        </ul>
+        
+    </div>
+    
+    <div id="footer">
+        &copy; 2002-2009 <a href="http://www.shpartners.com/">Pieter Claerhout</a>. All rights reserved.
+    </div>
+    
+</body>
+
+</html>
