@@ -70,15 +70,15 @@ $app = new Application();
 $app->before('get_info', 'add_header');
 
 // Link up the urls
-$app->get('/',                        'get_index');
-$app->get('/info/',                   'get_info');
-$app->get('/json/',                   'get_json');
-$app->get('/xml/',                    'get_xml');
-$app->get('/redirect/',               'get_redirect');
-$app->get('/page/<page>/',            'get_page');
-$app->any('/any/',                    'any_handler');
-$app->get('/page/<page:\d{4}>/<id>/', 'get_page');
-$app->get('/page/<page:.*>/',         'get_page');
+$app->get('',                        'get_index');
+$app->get('info',                   'get_info');
+$app->get('json',                   'get_json');
+$app->get('xml',                    'get_xml');
+$app->get('redirect',               'get_redirect');
+$app->get('page/<page>',            'get_page');
+$app->any('any',                    'any_handler');
+$app->get('page/<page:\d{4}>/<id>', 'get_page');
+$app->get('page/<page:.*>',         'get_page');
 
 // Run the application
 $app->run();

@@ -28,8 +28,7 @@ class CMS_PublicApplication extends SH_WebApplication {
         parent::__construct($options);
         
         // Link the default handlers
-        $this->any('/'          , 'any_page');
-        $this->any('/<page:.*>/', 'any_page');
+        $this->any('<page:.*>', 'any_page');
         
         // Assign the class variables
         $this->root = $root;
