@@ -12,6 +12,12 @@
 // HTML abstraction layer
 class SH_Html {
     
+    // Output MarkDown syntax
+    public static function markdown($text) {
+        require_once(dirname(__FILE__) . '/vendor/markdown/markdown.php');
+        return Markdown($text);
+    }
+    
     // Output a HTML link
     public static function link($text, $url='#', $attributes=array()) {
         
