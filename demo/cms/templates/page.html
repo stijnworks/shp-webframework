@@ -21,7 +21,7 @@
         <p>
             You are here:
             <? foreach ($this->page->getParents() as $parent) { ?>
-                <a href="<?= $parent->getUrl() ?>"><?= $parent->get('title') ?></a>
+                <?= SH_Html::link($parent->get('title'), $parent->getUrl()) ?>
                 &raquo;
             <? } ?>
             <b><?= $this->page->get('title') ?></b>
@@ -33,7 +33,7 @@
         
         <ul>
             <? foreach ($this->page->getChildren() as $child) { ?>
-                <li><a href="<?= $child->getUrl() ?>"><?= $child->get('title') ?></a></li>
+                <li><?= SH_Html::link($child->get('title'), $child->getUrl()) ?></li>
             <? } ?>
         </ul>
         

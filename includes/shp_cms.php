@@ -11,6 +11,7 @@
 
 // Includes
 require_once(dirname(__FILE__) . '/shp_debug.php');
+require_once(dirname(__FILE__) . '/shp_html.php');
 require_once(dirname(__FILE__) . '/shp_framework.php');
 
 // The public CMS application
@@ -44,12 +45,6 @@ class CMS_PublicApplication extends SH_WebApplication {
         
         // Output the template
         $this->template('page');
-        
-        /*
-        SH_Debug::dump($this->page, "the current page");
-        SH_Debug::dump($this->page->getParents(), "the parent pages");
-        SH_Debug::dump($this->page->getChildren(), "the children pages");
-        */
         
     }
     
