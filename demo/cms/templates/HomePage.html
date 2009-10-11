@@ -2,7 +2,7 @@
 
 <head>
     
-    <title><?= $this->page->get('title') ?> &raquo; SHpartners Web Framework / CMS</title>
+    <title><?= $page->get('title') ?> &raquo; SHpartners Web Framework / CMS</title>
     
     <base href="<?= $this->baseUrl() ?>"/>
     
@@ -16,10 +16,10 @@
         
         <h1>SHpartners Web Framework / CMS</h1>
         
-        <h2><?= $this->page->get('body') ?></h2>
+        <h2><?= $page->get('body') ?></h2>
         
         <ul>
-            <? foreach ($this->page->getChildren() as $child) { ?>
+            <? foreach ($page->getChildren() as $child) { ?>
                 <li><?= SH_Html::link($child->get('title'), $child->getUrl()) ?></li>
             <? } ?>
         </ul>

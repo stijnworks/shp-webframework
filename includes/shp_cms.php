@@ -60,6 +60,9 @@ class CMS_PublicApplication extends SH_WebApplication {
         $template = get_class($page);
         $template = "{$this->root}/templates/{$template}.html";
         
+        // Extract the variables
+        extract(get_object_vars($this));
+        
         // Include the template
         include($template);
         
