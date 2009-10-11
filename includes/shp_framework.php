@@ -10,6 +10,7 @@
  */
 
 // Includes
+require_once(dirname(__FILE__) . '/shp_debug.php');
 require_once(dirname(__FILE__) . '/shp_http.php');
 
 // Abstraction of an URL
