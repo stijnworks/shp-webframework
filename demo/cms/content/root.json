@@ -1,4 +1,5 @@
 {
     "title": "Homepage",
-    "body": "Welcome to my website!"
+    "body": "Welcome to my website!",
+    "__type__": "HomePage"
 }

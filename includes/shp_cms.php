@@ -34,6 +34,12 @@ class CMS_PublicApplication extends SH_WebApplication {
         $this->root = $root;
         $this->store = CMS_ContentStore::$root = "{$root}/content";
         
+        // Update the include path
+        SH_WebApplication::import("{$root}/code");
+        
+        // Include the base page class
+        include_once('Page.php');
+        
     }
     
     // Get a page by it's url
@@ -43,13 +49,20 @@ class CMS_PublicApplication extends SH_WebApplication {
         $this->page = CMS_ContentStore::findPage($page);
         
         // Output the template
-        $this->template('page');
+        $this->template($this->page);
         
     }
     
     // Output a template
-    protected function template($template) {
-        include("{$this->root}/templates/{$template}.html");
+    protected function template($page) {
+        
+        // Get the template path
+        $template = get_class($page);
+        $template = "{$this->root}/templates/{$template}.html";
+        
+        // Include the template
+        include($template);
+        
     }
     
 }
@@ -71,8 +84,8 @@ class CMS_ContentStore {
             throw new Exception("Not found: {$path}");
         }
         
-        // Return the page
-        return new CMS_ContentPage($path, $fullPath);
+        // Return the page instance
+        return self::getPageInstance($path, $fullPath);
         
     }
     
@@ -138,12 +151,38 @@ class CMS_ContentStore {
             $pageFullPath = $fullPath . '/' . $file->getFileName();
             
             // Add it to the list
-            $pages[] = new CMS_ContentPage($pagePath, $pageFullPath);
+            $pages[] = self::getPageInstance($pagePath, $pageFullPath);
             
         }
         
         // Return the list of pages
         return $pages;
+        
+    }
+    
+    // Get a page instance
+    protected static function getPageInstance($path, $fullPath) {
+        
+        // Parse the page content
+        $page = json_decode(file_get_contents($fullPath), true);
+        
+        // Get the class instance
+        if (isset($page['__type__'])) {
+            $class = $page['__type__'];
+        } else {
+            $class = 'Page';
+        }
+        
+        // Include the file
+        include_once("{$class}.php");
+        
+        // Create the instance
+        $instance = new $class();
+        $instance->path = $path;
+        $instance->data = $page;
+        
+        // Return the instance
+        return $instance;
         
     }
     
@@ -161,18 +200,6 @@ class CMS_ContentPage {
     // Class variables
     public $path;
     public $data = array();
-    
-    // Constructor
-    public function __construct($path, $fullPath) {
-        
-        // Parse the document
-        $json = file_get_contents($fullPath);
-        
-        // Assign the class variables
-        $this->path = $path;
-        $this->data = json_decode($json, true);
-        
-    }
     
     // Convert this to a string
     public function __toString() {

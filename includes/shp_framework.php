@@ -145,6 +145,13 @@ class SH_WebApplication {
         throw new Exception('404 Not Found');
     }
     
+    // Add a directory to the include path
+    public static function import($path) {
+        $includePath = get_include_path();
+        $includePath .= PATH_SEPARATOR . $path;
+        set_include_path($includePath);
+    }
+    
     // Get callback
     public function get($url, $methodName, $conditions=array()) {
        $this->event('get', $url, $methodName, $conditions);

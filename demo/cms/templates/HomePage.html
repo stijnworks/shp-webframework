@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    
+    <title><?= $this->page->get('title') ?> &raquo; SHpartners Web Framework / CMS</title>
+    
+    <base href="<?= $this->baseUrl() ?>"/>
+    
+    <link rel="stylesheet" href="../css/screen.css" media="screen" type="text/css" />
+    
+</head>
+
+<body style="background-color: rgb(255, 204, 1);">
+    
+    <div id="wrapper">
+        
+        <h1>SHpartners Web Framework / CMS</h1>
+        
+        <h2><?= $this->page->get('body') ?></h2>
+        
+        <ul>
+            <? foreach ($this->page->getChildren() as $child) { ?>
+                <li><?= SH_Html::link($child->get('title'), $child->getUrl()) ?></li>
+            <? } ?>
+        </ul>
+        
+    </div>
+    
+    <div id="footer">
+        &copy; 2009 <a href="http://www.shpartners.com/">SHpartners</a>. All rights reserved.
+    </div>
+    
+</body>
+
+</html>
