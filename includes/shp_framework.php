@@ -124,7 +124,7 @@ class SH_RequestWrapper {
 }
 
 // The main framework class
-class SH_Framework {
+class SH_WebApplication {
     
     // Class variables
     private $mappings = array();

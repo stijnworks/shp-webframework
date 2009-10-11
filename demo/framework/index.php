@@ -4,7 +4,7 @@
 require_once(dirname(__FILE__) . '/../../includes/shp_framework.php');
 
 // Create a new application class
-class Application extends SH_Framework {
+class Application extends SH_WebApplication {
     
     // Basic get request
     public function get_index() {
